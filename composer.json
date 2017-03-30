@@ -1,0 +1,12 @@
+{
+    "name": "php-jira-client",
+    "authors": [
+        {
+            "name": "teranchristian",
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "Jira\\": "src" }
+    }
+}
