@@ -21,4 +21,16 @@ class User extends Base
         );
         return $this->api->get($this->basePath().'/search', $data);
     }
+
+    public function newUser(array $user)
+    {
+        $data = array(
+            "name" => $name,
+            "password" => $password,
+            "emailAddress" => $email,
+            "displayName" => $displayName,
+            "notification" => $notification,
+        );
+        return $this->api->post($this->basePath(), $data);
+    }
 }
