@@ -2,10 +2,12 @@
     "name": "php-jira-client",
     "authors": [
         {
-            "name": "teranchristian",
+            "name": "teranchristian"
         }
     ],
-    "require": {},
+    "require": {
+        "docopt/docopt": "^1.0"
+    },
     "autoload": {
         "psr-4": { "Jira\\": "src" }
     }

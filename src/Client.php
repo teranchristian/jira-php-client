@@ -46,7 +46,7 @@ class Client
         curl_setopt($ch, CURLOPT_HTTPHEADER,
           array(
             'Accept: application/json',
-            'Content-Type: application/json'
+            'Content-Type: application/json',
             // 'Content-Length: ' . strlen(json_encode($data))
           )
         ); 
@@ -62,6 +62,6 @@ class Client
 
     public function post($uri, $data)
     {
-        $rq = $this->createRequest("POST", $uri, $data);
+        return $this->createRequest("POST", $uri, $data);
     }
 }
