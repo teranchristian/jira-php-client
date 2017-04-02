@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+require __DIR__.'/../config.php';
+
+$commandPath = JIRACLI_PATH.'/commands';
+$commands = [];
+foreach (new \DirectoryIterator($commandPath) as $item) {
+    if ($item->isFile() && !$item->isDot() && $item->getExtension() == 'php') {
+        $commands[] = pathinfo($item->getFilename(), PATHINFO_FILENAME);
+    }
+}
+
+$commandsStr = implode("\n  ", $commands);
+
+$doc = <<<DOCOPT
+Usage: jiracli [options] <cmd> [<args>...]
+
+Commands:
+  $commandsStr
+
+DOCOPT;
+
+$options = (new \Docopt\Handler(['optionsFirst' => true]))->handle($doc);
+$command = preg_replace('/[^a-z\d\-]/', '', $options['<cmd>']);
+$file = realpath("$commandPath/$command.php");
+if (!file_exists($file)) {
+    die("Unknown command $command\n");
+}
+
+$handler = require $file;
+$context = (object) [
+    'globalOpts' => $options,
+    'cmd'        => $options['<cmd>'],
+    'args'       => $options['<args>'],
+];
+$handler($context);
+ echo "\n";
