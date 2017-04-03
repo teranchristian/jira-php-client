@@ -22,6 +22,14 @@ class User extends Base
         return $this->api->get($this->basePath().'/search', $data);
     }
 
+    public function getUser($nameOrEmail)
+    {
+        $data = array(
+            'username' => $nameOrEmail
+        );
+        return $this->api->get($this->basePath().'/search', $data);
+    }
+
     public function newUser(array $user)
     {
         $data = array(

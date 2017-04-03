@@ -3,18 +3,27 @@ $usage = "
 Usage:  
         user all
         user new
-"; 
+        user search <name>
+Arguments:
+        <name>  Pass user or Email
+";
+
 use Jira\Service;
 
 return function($context) use ($usage, $client) {
     $options = (new \Docopt\Handler)->handle($usage, $context->args);
 
-    $issue = new Service\User($client);
+    $user = new Service\User($client);
     if ($options['all'] === true) {
-        echo $issue->getAll();
+        echo $user->getAll();
     }
 
     if ($options['new'] === true) {
-        echo $issue->newUser([]);
+        echo $user->newUser([]);
+    }
+
+    if ($options['search'] === true) {
+        $name = $options['<name>'];
+        echo $user->getUser($name);
     }
 };
