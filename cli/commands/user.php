@@ -2,10 +2,10 @@
 $usage = "
 Usage:  
         user all
-        user new
-        user search <name>
+        user new <name> <password> <email> <displayName> <notification>
+        user search <nameOrEmail>
 Arguments:
-        <name>  Pass user or Email
+        <nameOrEmail>  Pass user or Email
 ";
 
 use Jira\Service;
@@ -19,11 +19,18 @@ return function($context) use ($usage, $client) {
     }
 
     if ($options['new'] === true) {
-        echo $user->newUser([]);
+        $userData = array(
+            'name' => $options['<name>'],
+            'password' => $options['<password>'],
+            'emailAddress' => $options['<email>'],
+            'displayName' => $options['<displayName>'],
+            'notification' => $options['<notification>']
+        );
+        echo $user->newUser($userData);
     }
 
     if ($options['search'] === true) {
-        $name = $options['<name>'];
+        $name = $options['<nameOrEmail>'];
         echo $user->getUser($name);
     }
 };
