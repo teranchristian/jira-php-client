@@ -16,7 +16,7 @@ This client uses the latest version of the Jira Api. (in the future, I will lock
    curl -sS https://getcomposer.org/installer | php
    ```
 
-2. Then run Composer's install or update commands to complete installation. 
+2. Then run Composer's install or update commands in the root folder to complete installation. 
 
    ```sh
    php composer.phar install
@@ -24,10 +24,12 @@ This client uses the latest version of the Jira Api. (in the future, I will lock
 # Configuration
 Create a config file under /config/config.ini
 
-[Jira]
-host = '<YOUR-JIRA-HOST>'
-user = '<JIRA-USERNAME>'
-password = '<JIRA-PASSWORD>'
+   ``` sh
+   [Jira]
+   host = '<YOUR-JIRA-HOST>'
+   user = '<JIRA-USERNAME>'
+   password = '<JIRA-PASSWORD>'
+   ```
 
 # Usage
 
